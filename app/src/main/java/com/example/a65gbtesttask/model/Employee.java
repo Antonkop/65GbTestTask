@@ -1,11 +1,16 @@
 package com.example.a65gbtesttask.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 public class Employee {
+    @SerializedName("f_name")
     private String firstName;
+    @SerializedName("l_name")
     private String lastName;
     private String birthday;
+    @SerializedName("avatr_url")
     private String AvatarUrl;
     private List<Specialty> specialty;
 

@@ -1,7 +1,10 @@
 package com.example.a65gbtesttask.model;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Specialty {
 
+    @SerializedName("specialty_id")
     private int specialtyId;
     private String name;
 
