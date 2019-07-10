@@ -11,7 +11,7 @@ public class Employee {
     private String lastName;
     private String birthday;
     @SerializedName("avatr_url")
-    private String AvatarUrl;
+    private String avatarUrl;
     private List<Specialty> specialty;
 
     public String getFirstName() {
@@ -27,7 +27,7 @@ public class Employee {
     }
 
     public String getAvatarUrl() {
-        return AvatarUrl;
+        return avatarUrl;
     }
 
     public List<Specialty> getSpecialty() {
@@ -47,7 +47,7 @@ public class Employee {
     }
 
     public void setAvatarUrl(String avatarUrl) {
-        AvatarUrl = avatarUrl;
+        this.avatarUrl = avatarUrl;
     }
 
     public void setSpecialty(List<Specialty> specialty) {
