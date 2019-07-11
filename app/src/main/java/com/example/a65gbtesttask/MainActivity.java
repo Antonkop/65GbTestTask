@@ -3,6 +3,7 @@ package com.example.a65gbtesttask;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.FrameLayout;
 
 import com.example.a65gbtesttask.db.EmployeesDbHelper;
 import com.example.a65gbtesttask.model.Employee;
@@ -19,12 +20,14 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-//    private ArrayList<Employee> employees;
+    private FrameLayout fragmentContainer;
+    private EmployeesDbHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        fragmentContainer = findViewById(R.id.container);
         NetworkService.getInstance().getApi().getEmployees().enqueue(new Callback<GetEmployeesResponse>() {
             @Override
             public void onResponse(Call<GetEmployeesResponse> call, Response<GetEmployeesResponse> response) {
@@ -38,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
     }
 
     private void addToDb(List<Employee> employees) {
@@ -51,8 +53,8 @@ public class MainActivity extends AppCompatActivity {
                 dbHelper.addEmployee(employee,specialty.getSpecialtyId());
             }
         }
-        dbHelper.getAllSpeciality();
         dbHelper.getEmployeesBySpeciality(102);
         dbHelper.close();
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, new SpecialtyListFragment());
     }
 }
