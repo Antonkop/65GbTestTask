@@ -13,6 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.a65gbtesttask.adapters.SpecialityAdapter;
 import com.example.a65gbtesttask.db.EmployeesDbHelper;
+import com.example.a65gbtesttask.model.Specialty;
+
+import java.util.ArrayList;
 
 
 public class SpecialtyListFragment extends Fragment {
@@ -27,7 +30,20 @@ public class SpecialtyListFragment extends Fragment {
         specialityRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         EmployeesDbHelper dbHelper = new EmployeesDbHelper(getContext());
         SpecialityAdapter adapter = new SpecialityAdapter();
-        adapter.initAdapter(dbHelper.getAllSpeciality());
+        ArrayList<Specialty> specialties = new ArrayList<>(dbHelper.getAllSpeciality());
+        adapter.initAdapter(specialties);
+        adapter.setOnItemClickListener(new SpecialityAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View itemView, int position) {
+                if (getFragmentManager() != null) {
+                    getFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.container, new EmployersListFragment())
+                            .addToBackStack("slf")
+                            .commit();
+                }
+            }
+        });
         specialityRecyclerView.setAdapter(adapter);
         return view;
     }
