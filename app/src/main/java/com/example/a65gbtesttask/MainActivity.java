@@ -53,8 +53,11 @@ public class MainActivity extends AppCompatActivity {
                 dbHelper.addEmployee(employee,specialty.getSpecialtyId());
             }
         }
-        dbHelper.getEmployeesBySpeciality(102);
+//        dbHelper.getEmployeesBySpeciality(102);
         dbHelper.close();
-        getSupportFragmentManager().beginTransaction().replace(R.id.container, new SpecialtyListFragment());
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.container, new SpecialtyListFragment())
+                .commit();
     }
 }
