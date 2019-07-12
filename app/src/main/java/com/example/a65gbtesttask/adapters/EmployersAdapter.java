@@ -61,7 +61,7 @@ public class EmployersAdapter extends RecyclerView.Adapter<EmployersAdapter.Empl
         public void bind(Employee employee) {
             nameTextView.setText(converter.convertName(employee.getFirstName()));
             lastNameTextView.setText(converter.convertName(employee.getLastName()));
-            birthdayTextView.setText(employee.getBirthday());
+            birthdayTextView.setText(converter.convertBirthday(employee.getBirthday()));
         }
 
         public EmployersViewHolder(@NonNull View itemView) {
