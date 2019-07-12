@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -52,6 +53,12 @@ public class EmployersListFragment extends Fragment {
         employersRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         EmployersAdapter employersAdapter = new EmployersAdapter();
         employersAdapter.initAdapter(employees);
+        employersAdapter.setOnItemClickListener(new EmployersAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View itemView, int position) {
+                Toast.makeText(getContext(),"click!",Toast.LENGTH_LONG).show();
+            }
+        });
         employersRecyclerView.setAdapter(employersAdapter);
         return view;
     }

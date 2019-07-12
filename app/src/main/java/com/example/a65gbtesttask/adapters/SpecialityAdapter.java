@@ -24,8 +24,6 @@ public class SpecialityAdapter extends RecyclerView.Adapter<SpecialityAdapter.Sp
         notifyDataSetChanged();
     }
 
-
-
     @NonNull
     @Override
     public SpecialityViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -52,7 +50,6 @@ public class SpecialityAdapter extends RecyclerView.Adapter<SpecialityAdapter.Sp
         this.listener = listener;
     }
 
-
     class SpecialityViewHolder extends RecyclerView.ViewHolder {
         private TextView specialtyNameTextView;
 
@@ -67,7 +64,6 @@ public class SpecialityAdapter extends RecyclerView.Adapter<SpecialityAdapter.Sp
                 }
             });
         }
-
 
         public SpecialityViewHolder(@NonNull View itemView) {
             super(itemView);

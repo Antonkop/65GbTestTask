@@ -17,6 +17,7 @@ import java.util.List;
 public class EmployersAdapter extends RecyclerView.Adapter<EmployersAdapter.EmployersViewHolder>{
 
     private List<Employee> employees = new ArrayList<>();
+    private OnItemClickListener listener;
 
     public void initAdapter(List<Employee> employees) {
         this.employees.addAll(employees);
@@ -40,6 +41,14 @@ public class EmployersAdapter extends RecyclerView.Adapter<EmployersAdapter.Empl
         return employees.size();
     }
 
+    public interface OnItemClickListener {
+        void onItemClick(View itemView, int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.listener = onItemClickListener;
+    }
+
     class EmployersViewHolder extends RecyclerView.ViewHolder{
 
         private TextView nameTextView;
@@ -52,12 +61,19 @@ public class EmployersAdapter extends RecyclerView.Adapter<EmployersAdapter.Empl
             birthdayTextView.setText(employee.getBirthday());
         }
 
-
         public EmployersViewHolder(@NonNull View itemView) {
             super(itemView);
             nameTextView = itemView.findViewById(R.id.first_name);
             lastNameTextView = itemView.findViewById(R.id.last_name);
             birthdayTextView = itemView.findViewById(R.id.birthday);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (listener != null) {
+                        listener.onItemClick(view,getLayoutPosition());
+                    }
+                }
+            });
         }
     }
 }
