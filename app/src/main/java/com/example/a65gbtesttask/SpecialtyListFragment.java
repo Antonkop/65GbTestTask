@@ -30,7 +30,7 @@ public class SpecialtyListFragment extends Fragment {
         specialityRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         EmployeesDbHelper dbHelper = new EmployeesDbHelper(getContext());
         SpecialityAdapter adapter = new SpecialityAdapter();
-        ArrayList<Specialty> specialties = new ArrayList<>(dbHelper.getAllSpeciality());
+        final ArrayList<Specialty> specialties = new ArrayList<>(dbHelper.getAllSpeciality());
         adapter.initAdapter(specialties);
         adapter.setOnItemClickListener(new SpecialityAdapter.OnItemClickListener() {
             @Override
@@ -38,13 +38,14 @@ public class SpecialtyListFragment extends Fragment {
                 if (getFragmentManager() != null) {
                     getFragmentManager()
                             .beginTransaction()
-                            .replace(R.id.container, new EmployersListFragment())
+                            .replace(R.id.container, EmployersListFragment.getInstance(specialties.get(position).getSpecialtyId()))
                             .addToBackStack("slf")
                             .commit();
                 }
             }
         });
         specialityRecyclerView.setAdapter(adapter);
+        dbHelper.close();
         return view;
     }
 }
