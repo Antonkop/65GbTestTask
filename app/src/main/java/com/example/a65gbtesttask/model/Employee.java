@@ -2,9 +2,10 @@ package com.example.a65gbtesttask.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Employee {
+public class Employee implements Serializable {
     @SerializedName("f_name")
     private String firstName;
     @SerializedName("l_name")
