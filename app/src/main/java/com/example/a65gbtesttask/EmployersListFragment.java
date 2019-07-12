@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.a65gbtesttask.adapters.EmployersAdapter;
 import com.example.a65gbtesttask.db.EmployeesDbHelper;
 import com.example.a65gbtesttask.model.Employee;
 
@@ -49,6 +50,9 @@ public class EmployersListFragment extends Fragment {
         View view = inflater.inflate(R.layout.employers_list_fragment_layout, container, false);
         employersRecyclerView = view.findViewById(R.id.employers_list);
         employersRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        EmployersAdapter employersAdapter = new EmployersAdapter();
+        employersAdapter.initAdapter(employees);
+        employersRecyclerView.setAdapter(employersAdapter);
         return view;
     }
 }

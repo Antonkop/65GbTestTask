@@ -24,6 +24,8 @@ public class SpecialityAdapter extends RecyclerView.Adapter<SpecialityAdapter.Sp
         notifyDataSetChanged();
     }
 
+
+
     @NonNull
     @Override
     public SpecialityViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -52,11 +54,11 @@ public class SpecialityAdapter extends RecyclerView.Adapter<SpecialityAdapter.Sp
 
 
     class SpecialityViewHolder extends RecyclerView.ViewHolder {
-        private TextView nameTextView;
+        private TextView specialtyNameTextView;
 
         public void bind(Specialty specialty) {
-            nameTextView.setText(specialty.getName());
-            nameTextView.setOnClickListener(new View.OnClickListener() {
+            specialtyNameTextView.setText(specialty.getName());
+            specialtyNameTextView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     if (listener != null) {
@@ -66,9 +68,10 @@ public class SpecialityAdapter extends RecyclerView.Adapter<SpecialityAdapter.Sp
             });
         }
 
+
         public SpecialityViewHolder(@NonNull View itemView) {
             super(itemView);
-            nameTextView = itemView.findViewById(R.id.specialty_name_textView);
+            specialtyNameTextView = itemView.findViewById(R.id.specialty_name_textView);
         }
     }
 }
