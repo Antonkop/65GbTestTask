@@ -8,6 +8,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.a65gbtesttask.Converter;
 import com.example.a65gbtesttask.R;
 import com.example.a65gbtesttask.model.Employee;
 
@@ -18,9 +19,11 @@ public class EmployersAdapter extends RecyclerView.Adapter<EmployersAdapter.Empl
 
     private List<Employee> employees = new ArrayList<>();
     private OnItemClickListener listener;
+    private Converter converter;
 
     public void initAdapter(List<Employee> employees) {
         this.employees.addAll(employees);
+        converter = new Converter();
         notifyDataSetChanged();
     }
 
@@ -56,8 +59,8 @@ public class EmployersAdapter extends RecyclerView.Adapter<EmployersAdapter.Empl
         private TextView birthdayTextView;
 
         public void bind(Employee employee) {
-            nameTextView.setText(employee.getFirstName());
-            lastNameTextView.setText(employee.getLastName());
+            nameTextView.setText(converter.convertName(employee.getFirstName()));
+            lastNameTextView.setText(converter.convertName(employee.getLastName()));
             birthdayTextView.setText(employee.getBirthday());
         }
 
