@@ -12,6 +12,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class EmployeesDbHelper extends SQLiteOpenHelper {
@@ -83,9 +84,8 @@ public class EmployeesDbHelper extends SQLiteOpenHelper {
             employee.setBirthday(cursor.getString(cursor.getColumnIndex(BIRTHDAY)));
             employee.setAvatarUrl(cursor.getString(cursor.getColumnIndex(AVATAR_URL)));
             String specialtyArray = cursor.getString(cursor.getColumnIndex(SPECIALTY_ARRAY_STRING));
-            ArrayList<Specialty> specialties = new ArrayList<>();
-            specialties.addAll(gson.fromJson(specialtyArray,ArrayList.class));
-            employee.setSpecialty(specialties);
+            Specialty [] specialtyArr = (gson.fromJson(specialtyArray, Specialty[].class));
+            employee.setSpecialty(Arrays.asList(specialtyArr));
             result.add(employee);
         }
         cursor.close();
