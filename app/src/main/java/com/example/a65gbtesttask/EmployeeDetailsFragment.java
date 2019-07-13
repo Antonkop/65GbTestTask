@@ -55,7 +55,7 @@ public class EmployeeDetailsFragment extends Fragment {
         birhday = view.findViewById(R.id.employee_birthday);
         age= view.findViewById(R.id.employee_age);
         speciality = view.findViewById(R.id.employee_specialty);
-        if (employee != null) {
+        if (employee != null && employee.getAvatarUrl() != null) {
             Picasso.get().load(Uri.parse(employee.getAvatarUrl())).into(imageView);
         }
         converter = new Converter();
