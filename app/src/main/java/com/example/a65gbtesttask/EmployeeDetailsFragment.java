@@ -20,6 +20,7 @@ public class EmployeeDetailsFragment extends Fragment {
 
     private AppCompatImageView imageView;
     private Employee employee;
+    private Converter converter;
 
     public static EmployeeDetailsFragment getInstance(Employee employee) {
         Bundle bundle = new Bundle();
@@ -45,6 +46,8 @@ public class EmployeeDetailsFragment extends Fragment {
         if (employee != null) {
             Picasso.get().load(Uri.parse(employee.getAvatarUrl())).into(imageView);
         }
+        converter = new Converter();
+        int age = converter.getAge(employee.getBirthday());
         return view;
     }
 }
