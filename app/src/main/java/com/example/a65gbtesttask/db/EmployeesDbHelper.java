@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.a65gbtesttask.model.Employee;
 import com.example.a65gbtesttask.model.Specialty;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,10 +28,12 @@ public class EmployeesDbHelper extends SQLiteOpenHelper {
     private final String BIRTHDAY = "birthday";
     private final String AVATAR_URL = "avatarUrl";
     private final String SPECIALTY_ID = "specialtyId";
+    private final String SPECIALTY_ARRAY_STRING = "specialtyArrayString";
 
 
 
     private ContentValues contentValues = new ContentValues();
+    private Gson gson = new GsonBuilder().create();
 
 
     public EmployeesDbHelper(Context context) {
@@ -44,11 +48,13 @@ public class EmployeesDbHelper extends SQLiteOpenHelper {
     }
 
     public void addEmployee(Employee employee, int SpecialtyId) {
-        contentValues.put(FIRST_NAME,employee.getFirstName());
-        contentValues.put(LAST_NAME,employee.getLastName());
-        contentValues.put(BIRTHDAY,employee.getBirthday());
-        contentValues.put(AVATAR_URL,employee.getAvatarUrl());
+        contentValues.put(FIRST_NAME, employee.getFirstName());
+        contentValues.put(LAST_NAME, employee.getLastName());
+        contentValues.put(BIRTHDAY, employee.getBirthday());
+        contentValues.put(AVATAR_URL, employee.getAvatarUrl());
         contentValues.put(SPECIALTY_ID, SpecialtyId);
+        String specialtyArray = gson.toJson(employee.getSpecialty());
+        contentValues.put(SPECIALTY_ARRAY_STRING, specialtyArray);
         getWritableDatabase().insert(TABLE_EMPLOYEES_NAME, null, contentValues);
         contentValues.clear();
     }
@@ -76,6 +82,10 @@ public class EmployeesDbHelper extends SQLiteOpenHelper {
             employee.setLastName(cursor.getString(cursor.getColumnIndex(LAST_NAME)));
             employee.setBirthday(cursor.getString(cursor.getColumnIndex(BIRTHDAY)));
             employee.setAvatarUrl(cursor.getString(cursor.getColumnIndex(AVATAR_URL)));
+            String specialtyArray = cursor.getString(cursor.getColumnIndex(SPECIALTY_ARRAY_STRING));
+            ArrayList<Specialty> specialties = new ArrayList<>();
+            specialties.addAll(gson.fromJson(specialtyArray,ArrayList.class));
+            employee.setSpecialty(specialties);
             result.add(employee);
         }
         cursor.close();
@@ -92,7 +102,8 @@ public class EmployeesDbHelper extends SQLiteOpenHelper {
                 LAST_NAME + " TEXT, " +
                 BIRTHDAY + " TEXT, " +
                 AVATAR_URL + " TEXT, " +
-                SPECIALTY_ID + " INTEGER)";
+                SPECIALTY_ID + " INTEGER," +
+                SPECIALTY_ARRAY_STRING + " TEXT)";
         sqLiteDatabase.execSQL(SQL_CREATE_SPECIALTYS_TABLE);
         sqLiteDatabase.execSQL(SQL_CREATE_EMPLOYEES_TABLE);
     }
