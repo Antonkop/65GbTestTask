@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">65GbTestTask</string>
+    <string name="name_tv">Имя:</string>
+    <string name="last_name_tv">Фамилия:</string>
+    <string name="birthday_tv">Дата рождения:</string>
+    <string name="age_tv">Возвраст:</string>
+    <string name="specialty_tv">Специальность:</string>
 </resources>
