@@ -1,9 +1,9 @@
 package com.example.a65gbtesttask;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.widget.FrameLayout;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.a65gbtesttask.db.EmployeesDbHelper;
 import com.example.a65gbtesttask.model.Employee;
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<GetEmployeesResponse> call, Throwable t) {
-
+                startSpecialtyFragment();
             }
         });
     }
@@ -53,8 +53,12 @@ public class MainActivity extends AppCompatActivity {
                 dbHelper.addEmployee(employee,specialty.getSpecialtyId());
             }
         }
-//        dbHelper.getEmployeesBySpeciality(102);
+        startSpecialtyFragment();
         dbHelper.close();
+
+    }
+
+    private void startSpecialtyFragment() {
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.container, new SpecialtyListFragment())
