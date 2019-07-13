@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.Locale;
 
 public class Converter {
 
@@ -45,13 +46,20 @@ public class Converter {
         return "-";
     }
 
+    /**
+     *
+     * @param birthday employee birthday
+     * @return employee age
+     */
     public int getAge(String birthday) {
         if (birthday != null) {
-            DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+            DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.US);
             try {
                 Date birthdayDate = dateFormat.parse(convertBirthday(birthday));
                 Calendar birthDay = new GregorianCalendar();
-                birthDay.setTime(birthdayDate);
+                if (birthdayDate != null) {
+                    birthDay.setTime(birthdayDate);
+                }
                 Calendar today = new GregorianCalendar();
                 return today.get(Calendar.YEAR) - birthDay.get(Calendar.YEAR);
             } catch (ParseException e) {
@@ -60,5 +68,4 @@ public class Converter {
         }
         return 0;
     }
-
 }

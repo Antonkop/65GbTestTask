@@ -17,7 +17,7 @@ import com.squareup.picasso.Picasso;
 
 public class EmployeeDetailsFragment extends Fragment {
 
-    private static final String EMPLOYEE_BUNDLE_KEY = "KEY";
+    private static final String EMPLOYEE_BUNDLE_KEY = "EMPLOYEE_BUNDLE_KEY";
 
     private AppCompatImageView imageView;
     private AppCompatTextView name;

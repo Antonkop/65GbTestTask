@@ -1,7 +1,6 @@
 package com.example.a65gbtesttask;
 
 import android.os.Bundle;
-import android.widget.FrameLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,14 +19,10 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-    private FrameLayout fragmentContainer;
-    private EmployeesDbHelper dbHelper;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        fragmentContainer = findViewById(R.id.container);
         NetworkService.getInstance().getApi().getEmployees().enqueue(new Callback<GetEmployeesResponse>() {
             @Override
             public void onResponse(Call<GetEmployeesResponse> call, Response<GetEmployeesResponse> response) {

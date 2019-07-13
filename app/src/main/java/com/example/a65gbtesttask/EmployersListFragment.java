@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 public class EmployersListFragment extends Fragment {
 
-    private static final String ID_BUNDLE_KEY = "KEY";
+    private static final String ID_BUNDLE_KEY = "ID_BUNDLE_KEY";
 
     private RecyclerView employersRecyclerView;
     private int specialityId;

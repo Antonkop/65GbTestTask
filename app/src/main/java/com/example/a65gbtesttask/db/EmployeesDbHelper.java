@@ -31,8 +31,6 @@ public class EmployeesDbHelper extends SQLiteOpenHelper {
     private final String SPECIALTY_ID = "specialtyId";
     private final String SPECIALTY_ARRAY_STRING = "specialtyArrayString";
 
-
-
     private ContentValues contentValues = new ContentValues();
     private Gson gson = new GsonBuilder().create();
 

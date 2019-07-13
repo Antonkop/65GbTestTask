@@ -20,13 +20,11 @@ import java.util.ArrayList;
 
 public class SpecialtyListFragment extends Fragment {
 
-    private RecyclerView specialityRecyclerView;
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.specialty_list_fragment_layout, container, false);
-        specialityRecyclerView = view.findViewById(R.id.specialty_list);
+        RecyclerView specialityRecyclerView = view.findViewById(R.id.specialty_list);
         specialityRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         EmployeesDbHelper dbHelper = new EmployeesDbHelper(getContext());
         SpecialityAdapter adapter = new SpecialityAdapter();
