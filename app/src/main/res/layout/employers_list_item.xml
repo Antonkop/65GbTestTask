@@ -7,14 +7,20 @@
     android:layout_height="wrap_content">
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/first_name"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/last_name"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/birthday"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <View

@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.container, new SpecialtyListFragment())
+                .addToBackStack("mine")
                 .commit();
     }
 }
